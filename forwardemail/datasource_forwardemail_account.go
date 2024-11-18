@@ -10,6 +10,7 @@ import (
 
 func dataSourceAccount() *schema.Resource {
 	return &schema.Resource{
+		Description: "A data source to get current account properties.",
 		Schema: map[string]*schema.Schema{
 			"plan": {
 				Type:        schema.TypeString,
@@ -37,7 +38,10 @@ func dataSourceAccount() *schema.Resource {
 }
 
 func dataSourceAccountRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("failed to get forwardemail client")
+	}
 
 	account, err := client.GetAccount()
 	if err != nil {
