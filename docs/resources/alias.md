@@ -3,12 +3,12 @@
 page_title: "forwardemail_alias Resource - forwardemail"
 subcategory: ""
 description: |-
-  
+  A resource to create Forward Email domain aliases.
 ---
 
 # forwardemail_alias (Resource)
 
-
+A resource to create Forward Email domain aliases.
 
 
 

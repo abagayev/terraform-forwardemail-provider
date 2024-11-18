@@ -10,6 +10,7 @@ import (
 
 func dataSourceAccount() *schema.Resource {
 	return &schema.Resource{
+		Description: "A data source to get current account properties.",
 		Schema: map[string]*schema.Schema{
 			"plan": {
 				Type:        schema.TypeString,

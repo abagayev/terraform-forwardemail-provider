@@ -3,12 +3,12 @@
 page_title: "forwardemail_account Data Source - forwardemail"
 subcategory: ""
 description: |-
-  
+  A data source to get current account properties.
 ---
 
 # forwardemail_account (Data Source)
 
-
+A data source to get current account properties.
 
 
 

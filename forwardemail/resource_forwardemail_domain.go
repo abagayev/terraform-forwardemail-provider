@@ -11,6 +11,7 @@ import (
 
 func resourceDomain() *schema.Resource {
 	return &schema.Resource{
+		Description: "A resource to create Forward Email domains.",
 		Schema: map[string]*schema.Schema{
 			"name": {
 				Type:        schema.TypeString,

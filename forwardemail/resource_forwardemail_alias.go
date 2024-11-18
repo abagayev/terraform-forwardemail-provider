@@ -11,6 +11,7 @@ import (
 
 func resourceAlias() *schema.Resource {
 	return &schema.Resource{
+		Description: "A resource to create Forward Email domain aliases.",
 		Schema: map[string]*schema.Schema{
 			"domain": {
 				Type:        schema.TypeString,
