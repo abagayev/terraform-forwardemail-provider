@@ -8,9 +8,11 @@ import (
 	"github.com/jaswdr/faker"
 )
 
-var fake faker.Faker
-var testAccForwardemailProvider *schema.Provider
-var testAccForwardemailProviderFactories map[string]func() (*schema.Provider, error)
+var (
+	fake                                 faker.Faker
+	testAccForwardemailProvider          *schema.Provider
+	testAccForwardemailProviderFactories map[string]func() (*schema.Provider, error)
+)
 
 func init() {
 	fake = faker.New()

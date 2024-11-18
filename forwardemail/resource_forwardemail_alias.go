@@ -59,7 +59,11 @@ func resourceAlias() *schema.Resource {
 }
 
 func resourceAliasCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("meta is not of type *forwardemail.Client")
+	}
+
 	domain := d.Get("domain").(string)
 	name := d.Get("name").(string)
 
@@ -93,7 +97,11 @@ func resourceAliasCreate(ctx context.Context, d *schema.ResourceData, meta inter
 }
 
 func resourceAliasRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("meta is not of type *forwardemail.Client")
+	}
+
 	domain := d.Get("domain").(string)
 	name := d.Get("name").(string)
 
@@ -118,7 +126,11 @@ func resourceAliasRead(ctx context.Context, d *schema.ResourceData, meta interfa
 }
 
 func resourceAliasUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("meta is not of type *forwardemail.Client")
+	}
+
 	domain := d.Get("domain").(string)
 	name := d.Id()
 
@@ -139,7 +151,11 @@ func resourceAliasUpdate(ctx context.Context, d *schema.ResourceData, meta inter
 }
 
 func resourceAliasDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("meta is not of type *forwardemail.Client")
+	}
+
 	domain := d.Get("domain").(string)
 	name := d.Id()
 

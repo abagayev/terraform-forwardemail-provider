@@ -56,7 +56,11 @@ func resourceDomain() *schema.Resource {
 }
 
 func resourceDomainCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("could not get forwardemail client")
+	}
+
 	name := d.Get("name").(string)
 
 	params := forwardemail.DomainParameters{
@@ -90,7 +94,11 @@ func resourceDomainCreate(ctx context.Context, d *schema.ResourceData, meta inte
 }
 
 func resourceDomainRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("could not get forwardemail client")
+	}
+
 	name := d.Id()
 
 	domain, err := client.GetDomain(name)
@@ -114,7 +122,11 @@ func resourceDomainRead(ctx context.Context, d *schema.ResourceData, meta interf
 }
 
 func resourceDomainUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("could not get forwardemail client")
+	}
+
 	name := d.Id()
 
 	params := forwardemail.DomainParameters{}
@@ -133,7 +145,11 @@ func resourceDomainUpdate(ctx context.Context, d *schema.ResourceData, meta inte
 }
 
 func resourceDomainDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("could not get forwardemail client")
+	}
+
 	name := d.Id()
 
 	err := client.DeleteDomain(name)

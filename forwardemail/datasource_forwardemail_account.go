@@ -37,7 +37,10 @@ func dataSourceAccount() *schema.Resource {
 }
 
 func dataSourceAccountRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*forwardemail.Client)
+	client, ok := meta.(*forwardemail.Client)
+	if !ok {
+		return diag.Errorf("failed to get forwardemail client")
+	}
 
 	account, err := client.GetAccount()
 	if err != nil {

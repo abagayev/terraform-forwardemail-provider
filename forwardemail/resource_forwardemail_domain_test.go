@@ -69,7 +69,11 @@ func testAccCheckForwardemailDomainExists(n string, domain *forwardemail.Domain)
 			return fmt.Errorf("no ID is set")
 		}
 
-		client := testAccForwardemailProvider.Meta().(*forwardemail.Client)
+		client, ok := testAccForwardemailProvider.Meta().(*forwardemail.Client)
+		if !ok {
+			return fmt.Errorf("meta is not of type *forwardemail.Client")
+		}
+
 		foundDomain, err := client.GetDomain(rs.Primary.ID)
 		if err != nil {
 			return err
@@ -86,7 +90,10 @@ func testAccCheckForwardemailDomainExists(n string, domain *forwardemail.Domain)
 }
 
 func testAccCheckForwardemailDomainDestroy(s *terraform.State) error {
-	client := testAccForwardemailProvider.Meta().(*forwardemail.Client)
+	client, ok := testAccForwardemailProvider.Meta().(*forwardemail.Client)
+	if !ok {
+		return fmt.Errorf("meta is not of type *forwardemail.Client")
+	}
 
 	for _, rs := range s.RootModule().Resources {
 		if rs.Type != "forwardemail_domain" {
